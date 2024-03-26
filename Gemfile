@@ -3,6 +3,9 @@ source "https://rubygems.org"
 ruby "3.1.0"
 gem 'pg'
 gem 'dotenv-rails', groups: [:development, :test]
+gem 'devise'
+gem 'omniauth', '~> 2.0'
+
 
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
