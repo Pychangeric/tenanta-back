@@ -4,6 +4,7 @@ ruby "3.1.0"
 gem 'pg'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'devise'
+gem 'omniauth', '~> 2.0'
 
 
 

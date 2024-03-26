@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
-  devise_for :users
-  # Other routes for your application
+  get 'home/index'
+
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    sessions: 'users/sessions',
+    passwords: 'users/passwords',
+    unlocks: 'users/unlocks',
+    confirmations: 'users/confirmations',
+  }
+
+  devise_scope :user do
+    get 'logout', to: 'devise/sessions#destroy'
+  end
+
+  resources :users, only: [:show, :edit, :update, :destroy]
+
+  root to: 'home#index'
+
+
 end

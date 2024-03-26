@@ -10,6 +10,13 @@
   </head>
 
   <body>
+  
+  <!-- If using a button -->
+  <%= button_to "Logout", logout_path, method: :delete %>
+
+   <!-- If using a link -->
+  <%= link_to "Logout", logout_path, method: :delete %>
+
     <%= yield %>
   </body>
 </html>
