@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   # Devise modules and additional configurations
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,
+         :recoverable, :rememberable, :validatable, :Trackable,
         :omniauthable, omniauth_providers: [:twitter, :facebook]
 
   attr_accessor :login

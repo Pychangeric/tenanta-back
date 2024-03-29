@@ -13,8 +13,11 @@
   
   <!-- If using a button -->
 
-   <!-- If using a link -->
+  <!-- If using a link -->
   <%= link_to "Logout", logout_path, method: :delete %>
+
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
 
     <%= yield %>
   </body>
