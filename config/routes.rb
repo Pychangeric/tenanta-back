@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   get 'home/index'
+  root to: 'home#index'
+
+  resources :payments, only: [:new, :create]
+
 
   devise_for :users, controllers: {
     registrations: 'users/registrations',
@@ -9,13 +13,13 @@ Rails.application.routes.draw do
     confirmations: 'users/confirmations',
   }
 
+
   devise_scope :user do
     get 'logout', to: 'devise/sessions#destroy'
   end
 
   resources :users, only: [:show, :edit, :update, :destroy]
 
-  root to: 'home#index'
 
 
 end

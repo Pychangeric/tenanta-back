@@ -11,12 +11,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     build_resource(sign_up_params)
-    resource.first_name = params[:user][:first_name] # Set first_name attribute
-    resource.last_name = params[:user][:last_name] # Set last_name attribute
-    resource.phone_number = params[:user][:phone_number] # Set phone_number attribute
+    resource.first_name = params[:user][:first_name]
+    resource.last_name = params[:user][:last_name]
+    resource.phone_number = params[:user][:phone_number]
+
     if resource.save
-      # Handle successful creation
-      redirect_to root_path, notice: "User was successfully created."
+      redirect_to new_payment_path, notice: "Please make a payment to activate your account."
     else
       clean_up_passwords resource
       set_minimum_password_length
@@ -51,7 +51,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :phone_number])
   end
   
 
