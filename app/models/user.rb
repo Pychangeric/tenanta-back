@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   has_many :payments
+  has_one_attached :image
+
 
 
   devise :database_authenticatable, :registerable,
