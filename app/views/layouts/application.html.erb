@@ -1,24 +1,37 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>TenantaBack</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>User Profile</title>
+</head>
+<body>
+  <h1>Home Page</h1>
+  <p><%= @message %></p>
+  <h1>User Profile</h1>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-  </head>
+  <!-- Personal Details Section -->
+  <h2>Personal Details</h2>
+  <p>First Name: <%= @user.first_name %></p>
+  <p>Last Name: <%= @user.last_name %></p>
+  <p>Email: <%= @user.email %></p>
+  <p>Phone Number: <%= @user.phone_number %></p>
 
-  <body>
-  
-  <!-- If using a button -->
+  <!-- Display the uploaded image if available -->
+  <% if @user.image.attached? %>
+    <%= image_tag url_for(@user.image), class: "profile-image" %>
+  <% else %>
+    <p>No profile picture uploaded</p>
+  <% end %>
 
-  <!-- If using a link -->
-  <%= link_to "Logout", logout_path, method: :delete %>
+  <!-- Security Section -->
+  <h2>Security</h2>
+  <%= link_to "Change Password", edit_user_registration_path %>
 
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-
-    <%= yield %>
-  </body>
+  <!-- Image Upload Section -->
+  <h2>Profile Picture</h2>
+  <%= form_for @user, html: { multipart: true } do |f| %>
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+    <%= f.submit "Upload Image" %>
+  <% end %>
+</body>
 </html>

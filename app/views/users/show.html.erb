@@ -5,11 +5,31 @@
 </head>
 <body>
   <h1>User Profile</h1>
+
+  <!-- Personal Details Section -->
+  <h2>Personal Details</h2>
   <p>First Name: <%= @user.first_name %></p>
   <p>Last Name: <%= @user.last_name %></p>
   <p>Email: <%= @user.email %></p>
-  <!-- Add more user information as needed -->
+  <p>Phone Number: <%= @user.phone_number %></p>
 
+  <!-- Display the uploaded image if available -->
+  <% if @user.image.attached? %>
+    <%= image_tag @user.image, class: "profile-image" %>
+  <% else %>
+    <p>No profile picture uploaded</p>
+  <% end %>
 
+  <!-- Security Section -->
+  <h2>Security</h2>
+  <%= link_to "Change Password", edit_user_registration_path %>
+
+  <!-- Image Upload Section -->
+  <h2>Profile Picture</h2>
+  <%= form_for @user, html: { multipart: true } do |f| %>
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+    <%= f.submit "Upload Image" %>
+  <% end %>
 </body>
 </html>

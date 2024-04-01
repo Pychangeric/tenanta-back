@@ -1,5 +1,9 @@
 class User < ApplicationRecord
-  # Devise modules and additional configurations
+  has_many :payments
+  has_one_attached :image
+
+
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :Trackable,
         :omniauthable, omniauth_providers: [:twitter, :facebook]

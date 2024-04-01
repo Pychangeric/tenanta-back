@@ -84,11 +84,11 @@ GEM
     bootsnap (1.18.3)
       msgpack (~> 1.2)
     builder (3.2.4)
-    capybara (3.40.0)
+    capybara (3.39.2)
       addressable
       matrix
       mini_mime (>= 0.1.3)
-      nokogiri (~> 1.11)
+      nokogiri (~> 1.8)
       rack (>= 1.6.0)
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
@@ -106,12 +106,11 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    dotenv (3.1.0)
-    dotenv-rails (3.1.0)
-      dotenv (= 3.1.0)
-      railties (>= 6.1)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     drb (2.2.1)
-    error_highlight (0.6.0)
     erubi (1.12.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
@@ -141,6 +140,7 @@ GEM
     matrix (0.4.2)
     mini_mime (1.1.5)
     minitest (5.22.3)
+    mpesa (0.1.0.pre)
     msgpack (1.7.2)
     mutex_m (0.2.0)
     net-imap (0.4.10)
@@ -153,17 +153,11 @@ GEM
     net-smtp (0.4.0.1)
       net-protocol
     nio4r (2.7.1)
-    nokogiri (1.16.3-aarch64-linux)
+    nokogiri (1.15.6-arm-linux)
       racc (~> 1.4)
-    nokogiri (1.16.3-arm-linux)
+    nokogiri (1.15.6-x86-linux)
       racc (~> 1.4)
-    nokogiri (1.16.3-arm64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.16.3-x86-linux)
-      racc (~> 1.4)
-    nokogiri (1.16.3-x86_64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.16.3-x86_64-linux)
+    nokogiri (1.15.6-x86_64-linux)
       racc (~> 1.4)
     omniauth (2.1.2)
       hashie (>= 3.4.6)
@@ -178,9 +172,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.7.3)
     rack (3.0.10)
-    rack-protection (4.0.0)
-      base64 (>= 0.1.0)
-      rack (>= 3.0.0, < 4)
+    rack-protection (3.0.6)
+      rack
     rack-session (2.0.0)
       rack (>= 3.0.0)
     rack-test (2.1.0)
@@ -228,8 +221,7 @@ GEM
       railties (>= 5.2)
     rexml (3.2.6)
     rubyzip (2.3.2)
-    selenium-webdriver (4.18.1)
-      base64 (~> 0.2)
+    selenium-webdriver (4.9.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
@@ -240,12 +232,6 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    sqlite3 (1.7.3-aarch64-linux)
-    sqlite3 (1.7.3-arm-linux)
-    sqlite3 (1.7.3-arm64-darwin)
-    sqlite3 (1.7.3-x86-linux)
-    sqlite3 (1.7.3-x86_64-darwin)
-    sqlite3 (1.7.3-x86_64-linux)
     stimulus-rails (1.3.3)
       railties (>= 6.0.0)
     stringio (3.1.0)
@@ -257,6 +243,8 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    tzinfo-data (1.2024.1)
+      tzinfo (>= 1.0.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.1)
@@ -274,11 +262,8 @@ GEM
     zeitwerk (2.6.13)
 
 PLATFORMS
-  aarch64-linux
   arm-linux
-  arm64-darwin
   x86-linux
-  x86_64-darwin
   x86_64-linux
 
 DEPENDENCIES
@@ -287,23 +272,22 @@ DEPENDENCIES
   debug
   devise
   dotenv-rails
-  error_highlight (>= 0.4.0)
   importmap-rails
   jbuilder
+  mpesa
   omniauth (~> 2.0)
   pg
   puma (>= 5.0)
   rails (~> 7.1.3, >= 7.1.3.2)
   selenium-webdriver
   sprockets-rails
-  sqlite3 (~> 1.4)
   stimulus-rails
   turbo-rails
   tzinfo-data
   web-console
 
 RUBY VERSION
-   ruby 3.1.0p0
+   ruby 2.7.5p0
 
 BUNDLED WITH
-   2.5.7
+   2.4.22
