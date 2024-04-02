@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  get 'home/index'
-  root to: 'home#index'
+  get 'residences/index'
+  root to: 'residences#index'
+
+  resources :residences, only: [:index, :show]
+
 
   resources :payments, only: [:new, :create]
 

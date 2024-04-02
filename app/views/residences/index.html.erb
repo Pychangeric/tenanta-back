@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>List of Residences</title>
+</head>
+<body>
+  <h1>List of Residences</h1>
+
+  <ul>
+    <% @residences.each do |residence| %>
+      <li>
+        <strong>House Code:</strong> <%= residence.house_code %><br>
+        <strong>Type:</strong> <%= residence.type %><br>
+        <strong>Status:</strong> <%= residence.status %><br>
+        <strong>Price:</strong> <%= residence.price %><br>
+        <strong>Town:</strong> <%= residence.town %><br>
+        <strong>Google Maps:</strong> <%= link_to 'View on Google Maps', residence.google_maps %><br>
+        <strong>User Agreement:</strong>
+        <% if residence.user_agreement.present? %>
+          <%= link_to 'Download User Agreement', '/agreements/user_agreement.txt' %>
+        <% else %>
+          Not Available
+        <% end %><br>
+        <strong>Description:</strong> <%= residence.description %><br>
+        <strong>Institution:</strong> <%= residence.institution %><br>
+        <strong>Contact Number:</strong> <%= residence.contact_number %><br>
+      </li>
+      <br>
+    <% end %>
+  </ul>
+</body>
+</html>

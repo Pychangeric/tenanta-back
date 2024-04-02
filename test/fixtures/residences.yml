@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  house_code: MyString
+  type: 
+  status: MyString
+  price: 9.99
+  town: MyString
+  google_maps: MyString
+  user_agreement: MyText
+  description: MyText
+  institution: MyString
+  contact_number: MyString
+
+two:
+  house_code: MyString
+  type: 
+  status: MyString
+  price: 9.99
+  town: MyString
+  google_maps: MyString
+  user_agreement: MyText
+  description: MyText
+  institution: MyString
+  contact_number: MyString
