@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_01_150120) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_03_143007) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_01_150120) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "admins", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_admins_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
   create_table "payments", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.integer "amount"
@@ -50,6 +62,31 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_01_150120) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_payments_on_user_id"
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.bigint "residence_id", null: false
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["residence_id"], name: "index_photos_on_residence_id"
+  end
+
+  create_table "residences", force: :cascade do |t|
+    t.string "house_code"
+    t.string "type"
+    t.string "status"
+    t.decimal "price"
+    t.string "town"
+    t.string "google_maps"
+    t.text "user_agreement"
+    t.text "description"
+    t.string "institution"
+    t.string "contact_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "contact_us"
+    t.index ["house_code"], name: "index_residences_on_house_code"
   end
 
   create_table "users", force: :cascade do |t|
@@ -80,4 +117,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_01_150120) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "payments", "users"
+  add_foreign_key "photos", "residences"
 end
