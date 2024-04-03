@@ -8,16 +8,28 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+# In your seeds.rb or console
+admin = Admin.create(email: 'pychangeric@gmail.com', password: '!eric40665929', password_confirmation: '!eric40665929')
+
 
 
 # Sample data for around 10 residences
-residences_data = [
-  { house_code: "#10001", type: "Apartment", status: "Available", price: 2000, town: "Nairobi", google_maps: "Google Maps URL 1", user_agreement: "User agreement text 1", description: "Description 1", institution: "School 1", contact_us: "0794457203" },
-  { house_code: "#10002", type: "Villa", status: "Available", price: 3000, town: "Mombasa", google_maps: "Google Maps URL 2", user_agreement: "User agreement text 2", description: "Description 2", institution: "Hospital 2", contact_us: "0794457203" },
-  # Add more residences as needed
-]
+# Modify your seed data to include at least 10 photos for each house
+require 'faker'
 
-# Create residences using the seed data
-residences_data.each do |data|
-  Residence.create!(data)
+# Create 10 residences with Faker-generated data
+10.times do
+  Residence.create(
+    house_code: Faker::Lorem.characters(number: 10),
+    type: Faker::Lorem.word,
+    status: Faker::Lorem.word,
+    price: Faker::Number.decimal(l_digits: 5, r_digits: 2),
+    town: Faker::Address.city,
+    google_maps: Faker::Internet.url,
+    user_agreement: Faker::Lorem.paragraph,
+    description: Faker::Lorem.paragraph,
+    institution: Faker::Lorem.word,
+    contact_number: Faker::PhoneNumber.cell_phone,
+  )
 end
+

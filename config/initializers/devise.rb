@@ -26,6 +26,28 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
   config.mailer_sender = 'pychangeric@gmail.com'
+  config.authentication_keys = [:email]
+
+  config.warden do |manager|
+    manager.strategies.add(:admin_authentication) do
+      def authenticate!
+        if params[:admin]
+          admin = Admin.find_by(email: params[:admin][:email])
+          if admin && admin.valid_password?(params[:admin][:password])
+            success!(admin)
+          else
+            fail!("Invalid admin credentials")
+          end
+        else
+          fail!("Admin credentials missing")
+        end
+      end
+    end
+    manager.default_strategies(scope: :admin).unshift :admin_authentication
+  end
+
+  
+
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
