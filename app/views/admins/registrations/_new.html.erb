@@ -1,21 +1,15 @@
-<%= form_for(resource, as: :admin, url: registration_path(:admin)) do |f| %>
-  <div>
-    <%= f.label :email %>
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+<%= form_for(:admin, url: admin_registration_path) do |f| %>
+  <!-- Standard Devise email and password fields -->
+  <%= f.email_field :email, placeholder: 'Email' %>
+  <%= f.password_field :password, placeholder: 'Password' %>
+  <%= f.password_field :password_confirmation, placeholder: 'Confirm Password' %>
 
-  <div>
-    <%= f.label :password %>
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+  <!-- Additional fields for admin registration -->
+  <%= f.text_field :first_name, required: true, placeholder: 'First Name' %>
+  <%= f.text_field :last_name, required: true, placeholder: 'Last Name' %>
+  <%= f.text_field :phone_number, required: true, placeholder: 'Phone Number' %>
+  <%= f.text_field :national_id, required: true, placeholder: 'National ID' %>
+  <%= f.select :gender, options_for_select(['Male', 'Female']), prompt: 'Select gender', required: true, placeholder: 'Gender' %>
 
-  <div>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div>
-    <%= f.submit "Create Admin Account" %>
-  </div>
+  <%= f.submit 'Sign up' %>
 <% end %>
-
