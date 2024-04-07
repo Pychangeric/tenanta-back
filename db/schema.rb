@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_06_182943) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_07_214758) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -73,6 +73,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_06_182943) do
     t.string "national_id"
     t.string "gender"
     t.string "code"
+    t.string "profile_picture"
     t.index ["email"], name: "index_leaders_on_email", unique: true
     t.index ["national_id"], name: "index_leaders_on_national_id", unique: true
     t.index ["phone_number"], name: "index_leaders_on_phone_number", unique: true
@@ -95,6 +96,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_06_182943) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["residence_id"], name: "index_photos_on_residence_id"
+  end
+
+  create_table "residence_photos", force: :cascade do |t|
+    t.bigint "residence_id"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["residence_id"], name: "index_residence_photos_on_residence_id"
   end
 
   create_table "residences", force: :cascade do |t|
@@ -143,4 +152,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_06_182943) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "payments", "users"
   add_foreign_key "photos", "residences"
+  add_foreign_key "residence_photos", "residences"
 end

@@ -1,16 +1,21 @@
-<% if user_signed_in? %>
+<% if leader_signed_in? %>
   <li class="nav-item">
-    <%= link_to "Profile", user_path(current_user), class: "nav-link" %>
+    <%= link_to "Dashboard", leaders_dashboard_index_path, class: "nav-link" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "Profile", leaders_profile_path, class: "nav-link" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "Residences", leaders_residences_index_path, class: "nav-link" %>
   </li>
   <li class="nav-item">
     <%= link_to "Logout", logout_path, method: :delete, class: "nav-link" %>
   </li>
 <% else %>
   <li class="nav-item">
-    <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+    <%= link_to "Login", new_leader_session_path, class: "nav-link" %>
   </li>
   <li class="nav-item">
-    <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
+    <%= link_to "Sign Up", new_leader_registration_path, class: "nav-link" %>
   </li>
-  
 <% end %>

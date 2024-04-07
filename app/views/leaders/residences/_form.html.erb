@@ -1,0 +1,62 @@
+<%= form_with(model: @residence, url: leaders_residences_path, method: :post, local: true) do |form| %>
+    <% if @residence.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@residence.errors.count, "error") %> prohibited this residence from being saved:</h2>
+        <ul>
+          <% @residence.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    
+    <div class="field">
+      <%= form.label :type %>
+      <%= form.text_field :type %>
+    </div>
+    
+    <div class="field">
+      <%= form.label :status %>
+      <%= form.text_field :status %>
+    </div>
+    
+    <div class="field">
+      <%= form.label :price %>
+      <%= form.number_field :price, step: '0.01' %>
+    </div>
+    
+    <div class="field">
+      <%= form.label :town %>
+      <%= form.text_field :town %>
+    </div>
+    
+    <div class="field">
+      <%= form.label :google_maps %>
+      <%= form.text_field :google_maps %>
+    </div>
+    
+    <div class="field">
+      <%= form.label :user_agreement %>
+      <%= form.text_area :user_agreement %>
+    </div>
+    
+    <div class="field">
+      <%= form.label :description %>
+      <%= form.text_area :description %>
+    </div>
+    
+    <div class="field">
+      <%= form.label :institution %>
+      <%= form.text_field :institution %>
+    </div>
+    
+    <div class="field">
+      <%= form.label :contact_number %>
+      <%= form.text_field :contact_number %>
+    </div>
+    
+    <div class="actions">
+      <%= form.submit 'Save' %>
+    </div>
+  <% end %>
+  

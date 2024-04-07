@@ -1,0 +1,14 @@
+<h1>Leaders Residences</h1>
+<%= link_to 'New Residence', new_leaders_residence_path %>
+
+<% @residences.each do |residence| %>
+  <div>
+    <h2><%= residence.house_code %></h2>
+    <p><%= residence.type %></p>
+    <p><%= residence.status %></p>
+    <!-- Add more residence details as needed -->
+    <%= link_to 'Show', leaders_residence_path(residence) %>
+    <%= link_to 'Edit', edit_leaders_residence_path(residence) %>
+    <%= link_to 'Delete', leaders_residence_path(residence), method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
+<% end %>

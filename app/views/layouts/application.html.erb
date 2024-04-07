@@ -47,7 +47,10 @@
             <%= link_to 'Profile', leaders_profile_path(current_leader), class: 'nav-link' %>
           </li>
           <li class="nav-item">
-          <%= link_to 'Logout', logout_path, method: :delete, class: 'nav-link' %>
+            <%= link_to 'Logout', logout_path, method: :delete, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Add Residence', new_leaders_residence_path, class: 'nav-link' %>
           </li>
           <!-- Other leader-specific links here -->
         </ul>

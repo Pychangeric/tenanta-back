@@ -1,7 +1,6 @@
 class Leaders::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   include Rails.application.routes.url_helpers
-  # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   def new
@@ -32,29 +31,26 @@ class Leaders::RegistrationsController < Devise::RegistrationsController
   end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    @leader = current_leader
+    if @leader.update(leader_params)
+      flash[:success] = "Profile updated successfully"
+      redirect_to leaders_profile_path
+    else
+      render :edit
+    end
+  end
 
   # DELETE /resource
   def destroy
     super
   end
 
-  # GET /resource/cancel
-  # Forces the session data which is usually expired after sign
-  # in to be expired now. This is useful if the user wants to
-  # cancel oauth signing in/up in the middle of the process,
-  # removing all OAuth session data.
-  # def cancel
-  #   super
-  # end
-
   protected
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :phone_number, :national_id, :gender])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :phone_number, :national_id, :gender, :profile_picture])
   end
 
   # The path used after sign up.

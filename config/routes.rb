@@ -1,7 +1,16 @@
 Rails.application.routes.draw do
   namespace :leaders do
+    get 'residences/index'
+    get 'residences/show'
+    get 'residences/new'
+    get 'residences/edit'
     get 'dashboard/index'
   end
+
+  namespace :leaders do
+    resources :residences, only: [:new, :create]
+  end
+   
 
   # Devise routes for leaders
   devise_for :leaders, controllers: { 
@@ -13,8 +22,8 @@ Rails.application.routes.draw do
     get 'dashboard', to: 'dashboard#index'
   end
   namespace :leaders do
-    get 'profile', to: 'profiles#show'
-  end  
+    resource :profile, only: [:show, :edit, :update]
+  end
 
   # Devise routes for users
   devise_for :users, controllers: {

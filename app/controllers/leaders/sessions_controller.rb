@@ -9,6 +9,7 @@ class Leaders::SessionsController < Devise::SessionsController
 
   # POST /leaders/sign_in
   def create
+    puts "Leader Sign In Params: #{params.inspect}"
     super
   end
 

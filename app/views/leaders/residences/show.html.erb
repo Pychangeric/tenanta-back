@@ -1,0 +1,7 @@
+<h1>Residence Details</h1>
+<p><strong>House Code:</strong> <%= @residence.house_code %></p>
+<p><strong>Type:</strong> <%= @residence.type %></p>
+<p><strong>Status:</strong> <%= @residence.status %></p>
+<!-- Add more residence details as needed -->
+<%= link_to 'Edit', edit_leaders_residence_path(@residence) %>
+<%= link_to 'Back', leaders_residences_path %>
