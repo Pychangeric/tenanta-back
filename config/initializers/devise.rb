@@ -5,28 +5,10 @@ Devise.setup do |config|
   config.mailer_sender = 'pychangeric@gmail.com'
 
   # Custom admin authentication strategy
-  config.warden do |manager|
-    manager.strategies.add(:admin_authentication) do
-      def authenticate!
-        if params[:admin]
-          admin = Admin.find_by(email: params[:admin][:email])
-          if admin && admin.valid_password?(params[:admin][:password])
-            success!(admin)
-          else
-            fail!("Invalid admin credentials")
-          end
-        else
-          fail!("Admin credentials missing")
-        end
-      end
-    end
-
-    manager.default_strategies(scope: :admin).unshift :admin_authentication
-  end
 
   # Define after_sign_up_path_for outside the warden block
   def after_sign_up_path_for(resource)
-    admin_dashboard_path
+    leaders_dashboard_path
   end
 
   # ORM configuration (assuming ActiveRecord)

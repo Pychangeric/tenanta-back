@@ -7,6 +7,8 @@ gem 'devise'
 gem 'omniauth', '~> 2.0'
 gem 'mpesa'
 gem 'faker', '~> 2.18', require: false
+gem 'geocoder'
+
 
 
 

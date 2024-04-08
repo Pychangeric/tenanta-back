@@ -9,7 +9,17 @@
 #   end
 
 # In your seeds.rb or console
-admin = Admin.create(email: 'pychangeric@gmail.com', password: '!eric40665929', password_confirmation: '!eric40665929')
+
+Leader.create!(
+  first_name: 'Eric',
+  last_name: 'Mutembei',
+  phone_number: '0794457203',
+  national_id: '40665929',
+  gender: 'male',
+  email: 'ericmutembei337@gmail.com',
+  password: '!eric40665929',
+  code: 'pychang'
+)
 
 
 

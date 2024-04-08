@@ -1,0 +1,2 @@
+module Leaders::DashboardHelper
+end

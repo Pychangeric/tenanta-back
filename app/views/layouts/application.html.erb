@@ -6,6 +6,7 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_include_tag 'geocode' %>
 </head>
 <body>
 
@@ -37,16 +38,43 @@
           </li>
         <% end %>
       </ul>
+
+      <% if leader_signed_in? %>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <%= link_to 'Dashboard', leaders_dashboard_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Profile', leaders_profile_path(current_leader), class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Logout', logout_path, method: :delete, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Add Residence', new_leaders_residence_path, class: 'nav-link' %>
+          </li>
+          <!-- Other leader-specific links here -->
+        </ul>
+      <% else %>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <%= link_to 'Home', root_path, class: 'nav-link' %>
+          </li>
+          <!-- Other links for non-leader users here -->
+        </ul>
+      <% end %>
     </div>
   </div>
 </nav>
 
-<!-- Flash Messages -->
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<div class="container">
+  <!-- Flash Messages -->
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
 
-<!-- Main Content -->
-<%= yield %>
+  <!-- Main Content -->
+  <%= yield %>
+</div>
 
 </body>
 </html>

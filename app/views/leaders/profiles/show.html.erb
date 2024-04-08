@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Leader Profile</title>
+</head>
+<body>
+  <h1>Leader Profile</h1>
+
+  <!-- Personal Details Section -->
+  <h2>Personal Details</h2>
+  <p>First Name: <%= @leader.first_name %></p>
+  <p>Last Name: <%= @leader.last_name %></p>
+  <p>Email: <%= @leader.email %></p>
+  <p>Phone Number: <%= @leader.phone_number %></p>
+
+  <!-- Security Section -->
+  <h2>Security</h2>
+  <%= link_to "Change Password", edit_leader_registration_path %>
+
+  <!-- Profile Picture Upload Section -->
+  <h2>Profile Picture</h2>
+  <%= form_for @leader, url: leader_registration_path, method: :put, html: { multipart: true } do |f| %>
+    <%= f.label :profile_picture %>
+    <%= f.file_field :profile_picture %>
+    <%= f.submit "Upload Image" %>
+  <% end %>
+
+  <!-- Password Reset Section -->
+  <h2>Password Reset</h2>
+  <%= link_to "Forgot Password?", new_leader_password_path %>
+</body>
+</html>

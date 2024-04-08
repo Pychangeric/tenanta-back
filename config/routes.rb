@@ -1,22 +1,31 @@
 Rails.application.routes.draw do
-  # Admin routes
-  namespace :admins do
-    resource :profile, only: [:show]
+  namespace :leaders do
+    get 'residences/index'
+    get 'residences/show'
+    get 'residences/new'
+    get 'residences/edit'
+    get 'dashboard/index'
   end
 
-  devise_for :admins, controllers: { registrations: 'admins/registrations' }, skip: [:registrations], path: '', path_names: { sign_in: 'login', sign_out: 'logout' }
+  namespace :leaders do
+    resources :residences, only: [:new, :create]
+  end
+   
 
-  # Remove the following duplicated route definitions
-  as :admin do
-    get 'admins/sign_up', to: 'admins/registrations#new', as: 'new_admin_registration'
-    post 'admins', to: 'admins/registrations#create', as: 'admin_registration'
+  # Devise routes for leaders
+  devise_for :leaders, controllers: { 
+    registrations: 'leaders/registrations',
+    sessions: 'leaders/sessions',
+  }
+
+  namespace :leaders do
+    get 'dashboard', to: 'dashboard#index'
+  end
+  namespace :leaders do
+    resource :profile, only: [:show, :edit, :update]
   end
 
-  namespace :admin do
-    get 'dashboard', to: 'dashboard#index', as: 'dashboard'
-  end
-
-  # User routes
+  # Devise routes for users
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions',
