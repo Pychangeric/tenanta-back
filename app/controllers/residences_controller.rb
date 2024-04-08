@@ -18,7 +18,7 @@ class ResidencesController < ApplicationController
       @residence = Residence.find(params[:id])
     end
     def residence_params
-      params.require(:residence).permit(:house_code, :type, :status, :price, :town, :google_maps, :user_agreement, :description, :institution, :contact_number, photos_attributes: [:id, :image])
+      params.require(:residence).permit(:house_code, :type, :status, :price, :town, :google_maps, :user_agreement, :description, :institution, :contact_number, :user_agreement_file, photos_attributes: [:id, :image])
     end
     
   end

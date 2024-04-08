@@ -14,16 +14,31 @@
         <strong>Status:</strong> <%= residence.status %><br>
         <strong>Price:</strong> <%= residence.price %><br>
         <strong>Town:</strong> <%= residence.town %><br>
-        <strong>Google Maps:</strong> <%= link_to 'View on Google Maps', residence.google_maps %><br>
-        <strong>User Agreement:</strong>
-        <% if residence.user_agreement.present? %>
-          <%= link_to 'Download User Agreement', '/agreements/user_agreement.txt' %>
+        <strong>Google Maps:</strong>
+        <% if residence.latitude.present? && residence.longitude.present? %>
+          <%= link_to 'View on Google Maps', "https://www.google.com/maps/search/?api=1&query=#{residence.latitude},#{residence.longitude}" %><br>
         <% else %>
           Not Available
-        <% end %><br>
+        <% end %> <br>
+        <strong>User Agreement:</strong>
+        <% if residence.user_agreement_file.attached? %>
+          <%= link_to 'View User Agreement', rails_blob_url(residence.user_agreement_file), target: '_blank' %>
+          <%= link_to 'Download User Agreement', rails_blob_url(residence.user_agreement_file), download: true %>
+        <% else %>
+          Not Available
+        <% end %> <br>
         <strong>Description:</strong> <%= residence.description %><br>
         <strong>Institution:</strong> <%= residence.institution %><br>
-        <strong>Contact Number:</strong> <%= residence.contact_number %><br>
+        <strong>Contact Number:</strong>
+        <% if residence.contact_number.present? %>
+          <%= link_to residence.contact_number, "tel:#{residence.contact_number}" %><br>
+          <%= link_to 'Contact Us on WhatsApp', "https://wa.me/#{residence.contact_number}" %><br>
+        <% else %>
+          Not Available
+        <% end %>
+        <strong>Location:</strong> <%= residence.location %><br>
+        <strong>Latitude:</strong> <%= residence.latitude %><br>
+        <strong>Longitude:</strong> <%= residence.longitude %><br>
       </li>
       <br>
     <% end %>

@@ -114,6 +114,7 @@ GEM
     erubi (1.12.0)
     faker (2.23.0)
       i18n (>= 1.8.11, < 2)
+    geocoder (1.8.2)
     globalid (1.2.1)
       activesupport (>= 6.1)
     hashie (5.0.0)
@@ -275,6 +276,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   faker (~> 2.18)
+  geocoder
   importmap-rails
   jbuilder
   mpesa

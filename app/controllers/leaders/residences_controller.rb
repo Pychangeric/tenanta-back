@@ -47,6 +47,6 @@ class Leaders::ResidencesController < ApplicationController
   end
 
   def residence_params
-    params.require(:residence).permit(:house_code, :type, :status, :price, :town, :google_maps, :user_agreement, :description, :institution, :contact_number)
+    params.require(:residence).permit(:house_code, :type, :status, :price, :town, :google_maps, :user_agreement, :description, :institution, :contact_number, :location, :latitude, :longitude, :user_agreement_file)
   end
 end

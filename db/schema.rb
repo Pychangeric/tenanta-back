@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_07_214758) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_08_152338) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -99,7 +99,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_07_214758) do
   end
 
   create_table "residence_photos", force: :cascade do |t|
-    t.bigint "residence_id"
+    t.bigint "residence_id", null: false
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -120,6 +120,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_07_214758) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "contact_us"
+    t.string "location"
+    t.float "latitude"
+    t.float "longitude"
     t.index ["house_code"], name: "index_residences_on_house_code"
   end
 
