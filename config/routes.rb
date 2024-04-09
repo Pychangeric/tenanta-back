@@ -24,6 +24,9 @@ Rails.application.routes.draw do
   namespace :leaders do
     resource :profile, only: [:show, :edit, :update]
   end
+  namespace :leaders do
+    resources :types
+  end
 
   # Devise routes for users
   devise_for :users, controllers: {
