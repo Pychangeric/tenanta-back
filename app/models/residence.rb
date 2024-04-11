@@ -1,28 +1,38 @@
 class Residence < ApplicationRecord
   before_create :generate_house_code
   self.inheritance_column = :_type_disabled
-  #has_many :residence_photos, dependent: :destroy
-  #accepts_nested_attributes_for :residence_photos
+
   has_one_attached :user_agreement_file
-  #has_many_attached :photos
+  has_many_attached :snapshots
 
-
-
-  # Commenting out the photos validation temporarily
-  # validates :photos, length: { minimum: 10, message: 'must have at least 10 photos' }
-
-  geocoded_by :location do |residence, results|
-    if geo = results.first
-      residence.latitude = geo.latitude
-      residence.longitude = geo.longitude
-    end
-    geocoded_by :location
-    after_validation :geocode
-  end
-  
-  after_validation :geocode, if: ->(residence){ residence.location.present? && residence.location_changed? }
+  validates :snapshots, presence: true
+  validate :validate_snapshots_format
+  validate :validate_snapshots_size
+  validate :validate_minimum_snapshots
 
   private
+
+  def validate_snapshots_format
+    snapshots.each do |snapshot|
+      unless snapshot.content_type.in?(%w(image/jpeg image/png))
+        errors.add(:snapshots, 'must be a PNG or JPEG format')
+        break
+      end
+    end
+  end
+
+  def validate_snapshots_size
+    snapshots.each do |snapshot|
+      if snapshot.byte_size > 5.megabytes
+        errors.add(:snapshots, 'each snapshot should not exceed 5MB')
+        break
+      end
+    end
+  end
+
+  def validate_minimum_snapshots
+    errors.add(:snapshots, 'must include at least 10 snapshots') unless snapshots.length >= 10
+  end
 
   def generate_house_code
     self.house_code = '#' + rand.to_s[2..6]

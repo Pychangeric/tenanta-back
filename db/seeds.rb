@@ -21,6 +21,19 @@ Leader.create!(
   code: 'pychang'
 )
 
+Type.create(name: "1 bedroom")
+Type.create(name: "2 bedroom")
+Type.create(name: "3 bedroom")
+Type.create(name: "4 bedroom")
+Type.create(name: "Bedsitter")
+Type.create(name: "Apartments")
+Type.create(name: "Bungalows")
+Type.create(name: "Mansionette")
+Type.create(name: "Home compound")
+Type.create(name: "Hotels")
+Type.create(name: "AirBnBs")
+Type.create(name: "Single room")
+
 
 
 # Sample data for around 10 residences

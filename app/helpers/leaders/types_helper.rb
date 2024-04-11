@@ -1,0 +1,2 @@
+module Leaders::TypesHelper
+end
