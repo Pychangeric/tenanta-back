@@ -39,6 +39,17 @@
         <strong>Location:</strong> <%= residence.location %><br>
         <strong>Latitude:</strong> <%= residence.latitude %><br>
         <strong>Longitude:</strong> <%= residence.longitude %><br>
+
+        <strong>Snapshots:</strong>
+        <% if residence.snapshots.present? %>
+          <% residence.snapshots.each do |snapshot| %>
+            <%= image_tag snapshot %>
+          <% end %>
+        <% else %>
+          No Snapshots Available
+        <% end %>
+        <strong>Created At:</strong> <%= residence.created_at %><br>
+        <strong>Updated At:</strong> <%= residence.updated_at %><br>
       </li>
       <br>
     <% end %>

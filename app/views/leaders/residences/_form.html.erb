@@ -63,6 +63,13 @@
     <%= form.text_field :contact_number %>
   </div>
 
+  <div class="field">
+    <%= form.label :snapshots, "Upload Snapshots (Minimum 10)" %>
+    <% (1..15).each do |index| %>
+      <%= form.file_field :snapshots, multiple: true %>
+    <% end %>
+  </div>
+
   <div class="actions">
     <%= form.submit 'Save' %>
   </div>
