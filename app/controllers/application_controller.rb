@@ -1,6 +1,11 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user! # This line ensures that users must be authenticated before accessing any action
 
+  # Handle OPTIONS requests for CORS
+  def handle_options_request
+    head :ok, allow: 'POST', content_type: 'text/plain'
+  end
+
   private
 
   def after_sign_in_path_for(resource)

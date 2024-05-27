@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+
+    # Handle OPTIONS requests for Devise registrations and sessions
+    match 'users/registrations' => 'application#handle_options_request', via: [:options]
+    match 'users/sessions' => 'application#handle_options_request', via: [:options]
+    match '*path', to: 'application#handle_options_request', via: :options
+
+
+
   namespace :leaders do
     get 'residences/index'
     get 'residences/show'
